@@ -25,8 +25,11 @@ function App() {
         }
 
         axios.post("/api/todo", newTodo)
-             .then( () => setChange(change + 1) )
+             .then( () => changed() )
              .catch( (errors) => console.log(errors) )
+    }
+    function changed(){
+        setChange(change + 1)
     }
 
     useEffect(() => {
@@ -41,7 +44,8 @@ function App() {
         </header>
         <Routes>
             <Route path={"/"} element={<Home />} />
-            <Route path={"/todos"} element={<Canvas cTodos={todos} />} />
+            <Route path={"/todos"}
+                   element={<Canvas cTodos={todos} change={changed} />} />
             <Route path={"/todo/add"}
                    element={<NewTodo submitTodo={addTodo} />} />
         </Routes>
