@@ -6,9 +6,9 @@ type TodoProps= {
 
 export default function TodoCard(props: Readonly<TodoProps>) {
     return(
-        <>
+        <div id="card">
             <p id="desc">{props.todo.description}</p>
             <p id="stat">{props.todo.status}</p>
-        </>
+        </div>
     )
 }

@@ -4,8 +4,8 @@ export default function NavBar() {
 
     return(
         <>
-            <Link to={"/"}>Home</Link>
-            <Link to={"/todos"}>App</Link>
+            <Link to={"/"} className="navigation">Home</Link>
+            <Link to={"/todos"} className="navigation">App</Link>
         </>
     )
 }
