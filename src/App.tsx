@@ -6,6 +6,7 @@ import Canvas from "./Canvas.tsx";
 import {Route, Routes } from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import NewTodo from "./NewTodo.tsx";
 
 function App() {
     const [todos, setTodos]= useState<Todo[]>([])
@@ -15,6 +16,9 @@ function App() {
              .then( (response) =>
                  setTodos(response.data))
              .catch( (errors) => console.log(errors) )
+    }
+    function addTodo(desc: string, stat: string){
+        console.log(desc + ", " + stat)
     }
 
     useEffect(() => {
@@ -30,6 +34,8 @@ function App() {
         <Routes>
             <Route path={"/"} element={<Home />} />
             <Route path={"/todos"} element={<Canvas cTodos={todos} />} />
+            <Route path={"/todo/add"}
+                   element={<NewTodo submitTodo={addTodo} />} />
         </Routes>
     </>
     )

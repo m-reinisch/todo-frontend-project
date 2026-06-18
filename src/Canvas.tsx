@@ -1,11 +1,14 @@
 import type {Todo} from "./types.tsx";
 import TodoCard from "./TodoCard.tsx";
+import { useNavigate } from "react-router-dom";
 
 type CanvasProps= {
     cTodos: Todo[]
 }
 
 export default function Canvas(props: Readonly<CanvasProps>) {
+    const nav= useNavigate();
+
     return(
         <>
             <table>
@@ -45,6 +48,9 @@ export default function Canvas(props: Readonly<CanvasProps>) {
                 </tr>
                 </tbody>
             </table>
+            <button onClick={
+                () => nav("/todo/add")
+            }>Add Aufgabe</button>
         </>
     )
 }
