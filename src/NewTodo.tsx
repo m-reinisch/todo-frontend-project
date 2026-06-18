@@ -20,7 +20,7 @@ export default function NewTodo({submitTodo}: NewTodoProps) {
     }
 
     return(
-        <>
+        <div className="page">
             <h3>Neue Aufgabe anlegen:</h3>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>
@@ -63,6 +63,6 @@ export default function NewTodo({submitTodo}: NewTodoProps) {
                     Anlegen
                 </button>
             </form>
-        </>
+        </div>
     )
 }

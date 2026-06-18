@@ -10,7 +10,7 @@ export default function Canvas(props: Readonly<CanvasProps>) {
     const nav= useNavigate();
 
     return(
-        <>
+        <div className="page">
             <table>
                 <thead>
                 <tr>
@@ -48,9 +48,10 @@ export default function Canvas(props: Readonly<CanvasProps>) {
                 </tr>
                 </tbody>
             </table>
+            <br />
             <button onClick={
                 () => nav("/todo/add")
             }>Add Aufgabe</button>
-        </>
+        </div>
     )
 }

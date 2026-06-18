@@ -1,15 +1,16 @@
 import './App.css'
-import type {Todo} from "./types.tsx";
+import type {Todo, TodoDTO} from "./types.tsx";
 import NavBar from "./NavBar.tsx";
 import Home from "./Home.tsx";
 import Canvas from "./Canvas.tsx";
+import NewTodo from "./NewTodo.tsx";
 import {Route, Routes } from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import NewTodo from "./NewTodo.tsx";
 
 function App() {
     const [todos, setTodos]= useState<Todo[]>([])
+    const [change, setChange]= useState<number>(0)
 
     function loadAllTodos(){
         axios.get("/api/todo")
@@ -18,12 +19,19 @@ function App() {
              .catch( (errors) => console.log(errors) )
     }
     function addTodo(desc: string, stat: string){
-        console.log(desc + ", " + stat)
+        const newTodo: TodoDTO= {
+            description: desc,
+            status: stat
+        }
+
+        axios.post("/api/todo", newTodo)
+             .then( () => setChange(change + 1) )
+             .catch( (errors) => console.log(errors) )
     }
 
     useEffect(() => {
         loadAllTodos()
-    }, []);
+    }, [change]);
 
     return (
     <>
