@@ -2,7 +2,8 @@ import type {Todo} from "./types.tsx";
 import axios from "axios";
 
 type TodoProps= {
-    todo: Todo
+    todo: Todo,
+    change: () => void
 }
 
 export default function TodoCard(props: Readonly<TodoProps>) {
@@ -11,8 +12,8 @@ export default function TodoCard(props: Readonly<TodoProps>) {
         let stat: string= "OPEN"
 
         if (level === "OPEN"){
-            stat= "IN_PROGRSS"
-        } else if (level === "IN_PROGRSS"){
+            stat= "IN_PROGRESS"
+        } else if (level === "IN_PROGRESS"){
             stat= "DONE"
         }
         const upTodo: Todo= {
@@ -21,7 +22,7 @@ export default function TodoCard(props: Readonly<TodoProps>) {
             status: stat
         }
         axios.put("/api/todo/" + data.id, upTodo)
-             .then( () => console.log(upTodo) )
+             .then( () => props.change() )
              .catch( (errors) => console.log(errors) )
     }
 

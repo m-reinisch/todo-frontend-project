@@ -3,7 +3,8 @@ import TodoCard from "./TodoCard.tsx";
 import { useNavigate } from "react-router-dom";
 
 type CanvasProps= {
-    cTodos: Todo[]
+    cTodos: Todo[],
+    change: () => void
 }
 
 export default function Canvas(props: Readonly<CanvasProps>) {
@@ -26,7 +27,7 @@ export default function Canvas(props: Readonly<CanvasProps>) {
                             .filter(t =>
                                 t.status === "OPEN")
                             .map(t =>
-                                <TodoCard todo={t} />)
+                                <TodoCard todo={t} change={props.change} />)
                         }
                     </td>
                     <td>
@@ -34,7 +35,7 @@ export default function Canvas(props: Readonly<CanvasProps>) {
                             .filter(t =>
                                 t.status === "IN_PROGRESS")
                             .map(t =>
-                                <TodoCard todo={t} />)
+                                <TodoCard todo={t} change={props.change} />)
                         }
                     </td>
                     <td>
@@ -42,7 +43,7 @@ export default function Canvas(props: Readonly<CanvasProps>) {
                             .filter(t =>
                                 t.status === "DONE")
                             .map(t =>
-                                <TodoCard todo={t} />)
+                                <TodoCard todo={t} change={props.change} />)
                         }
                     </td>
                 </tr>
