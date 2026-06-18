@@ -1,4 +1,11 @@
-export default function Canvas() {
+import type {Todo} from "./types.tsx";
+import TodoCard from "./TodoCard.tsx";
+
+type CanvasProps= {
+    cTodos: Todo[]
+}
+
+export default function Canvas(props: Readonly<CanvasProps>) {
     return(
         <>
             <table>
@@ -11,9 +18,30 @@ export default function Canvas() {
                 </thead>
                 <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        {props.cTodos
+                            .filter(t =>
+                                t.status === "OPEN")
+                            .map(t =>
+                                <TodoCard todo={t} />)
+                        }
+                    </td>
+                    <td>
+                        {props.cTodos
+                            .filter(t =>
+                                t.status === "IN_PROGRESS")
+                            .map(t =>
+                                <TodoCard todo={t} />)
+                        }
+                    </td>
+                    <td>
+                        {props.cTodos
+                            .filter(t =>
+                                t.status === "DONE")
+                            .map(t =>
+                                <TodoCard todo={t} />)
+                        }
+                    </td>
                 </tr>
                 </tbody>
             </table>
