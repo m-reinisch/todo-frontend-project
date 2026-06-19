@@ -8,6 +8,10 @@ button {
   width: fit-content;
 }
 
+#del {
+  color: red;
+}
+
 .navigation {
   padding: 10px;
 }
