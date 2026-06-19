@@ -1,5 +1,5 @@
 import type {Todo} from "./types.tsx";
-import TodoCard from "./TodoCard.tsx";
+import {TodoCard} from "./TodoCard.tsx";
 import { useNavigate } from "react-router-dom";
 
 type CanvasProps= {
@@ -27,7 +27,9 @@ export default function Canvas(props: Readonly<CanvasProps>) {
                             .filter(t =>
                                 t.status === "OPEN")
                             .map(t =>
-                                <TodoCard todo={t} change={props.change} />)
+                                <TodoCard todo={t}
+                                          change={props.change}
+                                          key={t.id}/>)
                         }
                     </td>
                     <td>
